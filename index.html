@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réception de texte depuis iPhone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #receivedText {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Réception de texte depuis un raccourci iPhone</h1>
+    <p>Envoyez du texte depuis votre raccourci iPhone et il s'affichera ci-dessous :</p>
+
+    <div id="receivedText">
+        <!-- Le texte reçu s'affichera ici -->
+    </div>
+
+    <script>
+        function getTextFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const text = urlParams.get('text');
+            return text;
+        }
+
+        window.onload = function() {
+            const receivedText = getTextFromURL();
+            if (receivedText) {
+                document.getElementById('receivedText').textContent = receivedText;
+            } else {
+                document.getElementById('receivedText').textContent = "Aucun texte reçu pour l'instant.";
+            }
+        };
+    </script>
+</body>
+</html>
